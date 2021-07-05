@@ -1,0 +1,50 @@
+<div class="wrapper2">
+
+    <nav id="sidebar">
+
+        <ul class="lisst-unstyled components">
+
+            <p class="p">MENU OPTION</p>
+            <li>
+                <a routerLink="./dashboard" style="color: white;"> <i class="fas fa-home text-white mr-2 h4"></i>Dashboard</a>
+            </li>
+            <li>
+                <a routerLink="./product" class="mt-2" style="color: white;"><i class="fas fa-people-carry h4 text-white mr-2"></i>Product</a>
+            </li>
+            <li>
+                <a routerLink="./dashboard" class="mt-2" style="color: white;"><i class="fas fa-id-card h4 text-white mr-2"></i>Customer</a>
+            </li>
+
+            <li>
+                <a routerLink="./product" class="mt-2" style="color: white;"><i class="fab fa-supple h3 text-white mr-2"></i>Supplier</a>
+            </li>
+
+            <li>
+                <a routerLink="./kunjunganToko" class="mt-2" style="color: white;"><i class="fas fa-eye h3 text-white mr-2"></i>Kunjungan Toko</a>
+            </li>
+
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle mt-2"><i class="fas fa-tv text-white h4 mr-2"></i>Monitoring</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a routerLink="./dashboard" class="mt-2" style="color: white;">Page 1</a>
+                    </li>
+                    <li>
+                        <a routerLink="./dashboard" class="mt-2" style="color: white;">Page 2</a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <li>
+                <a routerLink="./counter" style="color: white;"><i class="fas fa-cash-register mr-3 text-white h4"></i>Counter</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- <div id="content"> -->
+    <router-outlet></router-outlet>
+    <!-- </div> -->
+
+</div>

@@ -1,0 +1,80 @@
+<nav>
+    <div class="wrapper">
+        <div class="logo"><a href="#">Agent Brasil</a></div>
+        <input type="radio" name="slider" id="menu-btn">
+        <input type="radio" name="slider" id="close-btn">
+        <ul class="nav-links">
+            <label for="close-btn" class="btn close-btn"><i class="fas fa-times text-danger"></i></label>
+            <!-- <li>
+                <a href="#" class="desktop-item">Dropdown Menu</a>
+                <input type="checkbox" id="showDrop">
+                <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+                <ul class="drop-menu">
+                    <li><a href="#">Drop menu 1</a></li>
+                    <li><a href="#">Drop menu 2</a></li>
+                    <li><a href="#">Drop menu 3</a></li>
+                    <li><a href="#">Drop menu 4</a></li>
+                </ul>
+            </li> -->
+            <li>
+                <a class="desktop-item"><i class="fas fa-user mr-2 text-warning h4"></i>{{username}}</a>
+                <input type="checkbox" id="showDrop">
+                <label for="showDrop" class="mobile-item">Menu User <i class="fas fa-caret-down ml-1 text-white h5"></i></label>
+                <ul class="drop-menu">
+                    <li>
+                        <a id="c" routerLink="./historylogin"> <i class="fas fa-user-clock mr-2 text-success "></i>Activity Log</a>
+                        <label class="sip2" for="close-btn" routerLink="./historylogin"><i class="fas fa-user-clock mr-2 text-success "></i>Activity Log</label>
+                    </li>
+                    <li>
+                        <a id="b" routerLink="./updatepassword"><i class="fas fa-unlock-alt mr-2 text-warning "></i>Password</a>
+                        <label class="sip2" for="close-btn" routerLink="./updatepassword"><i class="fas fa-unlock-alt mr-2 text-warning "></i>Password</label>
+                    </li>
+
+                    <li><a type="submit" (click)="Logout()"><i class="fas fa-power-off mr-2 text-danger"></i>Logout</a></li>
+                </ul>
+            </li>
+            <li>
+                <input type="checkbox" id="showMega">
+                <label for="showMega" class="mobile-item">MENU OPTION<i class="fas fa-caret-down ml-2 text-white h5"></i></label>
+                <div class="mega-box">
+                    <div class="content">
+                        <!-- <div class="row">
+                            <img src="img.jpg" alt="">
+                        </div> -->
+                        <div class="row">
+                            <ul class="mega-links">
+                                <li><label for="close-btn" routerLink="./dashboard"><i class="fas fa-home text-white mr-2 h4"></i>Dashboard</label></li>
+                                <li><label for="close-btn" routerLink="./product"><i class="fas fa-people-carry h4 text-white mr-2"></i>Product</label></li>
+                                <li><label for="close-btn" routerLink="./dashboard"><i class="fas fa-id-card h4 text-white mr-2"></i>Customer</label></li>
+                                <li><label for="close-btn" routerLink="./dashboard"><i class="fab fa-supple h3 text-white mr-2"></i>Supplier</label></li>
+                                <li><label for="close-btn" routerLink="./kunjunganToko"><i class="fas fa-eye h3 text-white mr-2"></i>Kunjungan</label></li>
+                                <li><label for="close-btn" routerLink="./dashboard"><i class="fas fa-tv text-white h4 mr-2"></i>Monitoring</label></li>
+                                <li><label for="close-btn" routerLink="./counter"><i class="fas fa-cash-register mr-3 text-white h4"></i>Counter</label></li>
+                                <!-- <li><a routerLink="./dashboard"><i class="fas fa-home text-white mr-2 h4"></i>Dashboard</a></li>
+                                <li><a routerLink="./product"><i class="fas fa-people-carry h4 text-white mr-2"></i>Product</a> </li>
+                                <li><a routerLink="./dashboard"><i class="fas fa-id-card h4 text-white mr-2"></i>Customer</a></li>
+                                <li><a routerLink="./dashboard"><i class="fab fa-supple h3 text-white mr-2"></i>Supplier</a></li>
+                                <li><a routerLink="./kunjunganToko"><i class="fas fa-eye h3 text-white mr-2"></i>Kunjungan</a></li>
+                                <li><a routerLink="./dashboard"><i class="fas fa-tv text-white h4 mr-2"></i>Monitoring</a></li>
+                                <li><a routerLink="./counter"><i class="fas fa-cash-register mr-3 text-white h4"></i>Counter</a></li> -->
+                            </ul>
+                        </div>
+                        <!-- <div class="row">
+                            <header>Email Services</header>
+                            <ul class="mega-links">
+                                <li><a href="#">Monitoring</a></li>
+                                <li><a href="#">Counter</a></li>
+                                <li><a href="#">Mobile Email</a></li>
+                                <li><a href="#">Web Marketing</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </li>
+            <li><a routerLink="/login"><i class="fas fa-user-check text-info mr-2 h4"></i>Login</a></li>
+        </ul>
+        <label for="menu-btn" class="btn menu-btn">
+            <i class="fas fa-bars" style="color: white;"></i>
+        </label>
+    </div>
+</nav>

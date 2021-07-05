@@ -1,0 +1,151 @@
+<div class="body2">
+    <div class="container">
+        <div class="row mt-4">
+            <!-- <div *ngFor="let data of productDataTable">
+            <p>{{data}}</p>
+            <p>{{data.nama}}</p>
+        </div> -->
+            <div class="col-lg-3 mb-3">
+                <button type="button" (click)="back()" class="btn btn-danger mb-3 Back animate__animated animate__fadeInDown">Back Halaman</button>
+                <div class="card border-info animate__animated animate__backInDown">
+                    <div class="card-body ">
+                        <h5 class="card-title text-info"><strong>Info Menu</strong></h5>
+                        <p class="card-text text-info">Menu ini menampilkan Detail Kunjungan..dari Cek status kunjungan, Note dan Freezer Toko</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="alert alert-info text-center animate__animated animate__rotateInDownLeft">
+                    <strong>  KUNJUNGAN DETAIL </strong>
+                </div>
+
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nama" placeholder="Type to search by Nama Toko" [(ngModel)]="queryString" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><i class="fas fa-search text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered ml-1 text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Toko</th>
+                            <th scope="col">Info System</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Freezer</th>
+                            <th scope="col">Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of KunjunganTBerhasilData | filterKunjunganberhasil: queryString | paginate: { itemsPerPage: 6, currentPage: p }">
+                            <td [ngClass]="{
+                                        'text-danger': data.isBerhasil,
+                                        'text-success': data.isBerhasil
+                                    }">{{ data.nama}}</td>
+                            <td [ngClass]="{
+                                        'text-danger': data.isBerhasil,
+                                        'text-success': data.isBerhasil
+                                    }">{{ data.info }}</td>
+                            <td [ngClass]="{
+                                        'text-danger': data.isBerhasil,
+                                        'text-success': data.isBerhasil
+                                    }">{{data.note}}</td>
+                            <td><button type="button" (click)="changeCek(data.isBerhasil,data.kunjunganId)" class="btn btn-success detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                       Cek
+                                      </button></td>
+                            <td><button type="button" (click)="FreezerDetail(data.customerId)" class="btn btn-primary detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Freezer
+                                       </button></td>
+                            <td><button type="button" (click)="updateNote(data.kunjunganId,data.nama)" class="btn btn-info detail_upload" data-toggle="modal" data-target="#exampleModalCenterNote">
+                                        Note
+                                    </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event" class="text-center text-white nati"></pagination-controls>
+
+                <div class="card-custom" *ngFor="let data of KunjunganTBerhasilData | filterKunjunganberhasil: queryString | paginate: { itemsPerPage: 2, currentPage: c }">
+                    <div class="card border card-header mt-4 font-card bg-card animate__animated animate__rotateInDownLeft">
+                        <span> <i class="fas fa-clipboard mr-2"></i><strong>{{data.nama}}</strong> </span>
+                    </div>
+                    <ul class="list-group list-group-flush border">
+                        <li class="list-group-item font-list">Info System :
+                            <strong [ngClass]="{
+                            'text-danger': data.isBerhasil,
+                            'text-success': data.isBerhasil
+                        }">{{ data.info }}</strong>
+                        </li>
+
+                        <li class="list-group-item font-list">Note :
+                            <strong [ngClass]="{
+                            'text-danger': data.isBerhasil,
+                            'text-success': data.isBerhasil
+                        }">{{data.note}}</strong>
+                        </li>
+                    </ul>
+                    <div class="card-body border mb-3">
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <button type="button" (click)="changeCek(data.isBerhasil,data.kunjunganId)" class="btn btn-success detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                Cek
+                               </button>
+                            <div class="col-1">
+                            </div>
+                            <button type="button" (click)="FreezerDetail(data.customerId)" class="btn btn-primary detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                Freezer
+                               </button>
+                            <div class="col-1">
+
+                            </div>
+                            <button type="button" (click)="updateNote(data.kunjunganId,data.nama)" class="btn btn-info detail_upload" data-toggle="modal" data-target="#exampleModalCenterNote">
+                                Note
+                            </button>
+                            <div class="col-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pagination-controls (pageChange)="c = $event" class="text-center text-white nati2"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenterNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Note <strong>{{namaToko}}</strong></h5>
+                <button (click)="Clear()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputCity">Tulisan Note</label>
+                            <input class="form-control" type="text" name="note" [(ngModel)]="Note.note" id="keterangan" placeholder="Tuliskan Note" required>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" (click)="Clear()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" (click)="kirimNote()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- {{Note | json}} -->

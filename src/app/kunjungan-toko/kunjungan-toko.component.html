@@ -1,0 +1,64 @@
+<div class="body2">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-lg-4 mb-3">
+                <div class="card border-success animate__animated animate__backInDown">
+                    <div class="card-body ">
+                        <h5 class="card-title text-success"><strong>Info Menu</strong></h5>
+                        <p class="card-text text-success">Menu ini menampilkan Jadwal Kunjungan dari tanggal kunjungan dan pengeceknya</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="alert alert-success text-center animate__animated animate__rotateInDownLeft">
+                    <strong>  Jadwal Kunjungan</strong>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nama" placeholder="Type to search by Pengecek" [(ngModel)]="queryString" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><i class="fas fa-search text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered ml-1 text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tanggal Kunjungan</th>
+                            <th scope="col">Pengecek</th>
+                            <th scope="col">Note Kunjungan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of KunjunganTokoData | filterKunjungantoko: queryString">
+                            <td>{{ data.tanggalSetoran | date:'fullDate' }}</td>
+                            <td>{{ data.asset }}</td>
+                            <td><button type="button" (click)="onClick(data)" class="btn btn-primary">
+                                       Kunjungan
+                                      </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card-custom" *ngFor="let data of KunjunganTokoData | filterKunjungantoko: queryString">
+                    <div class="card border card-header mt-4 font-card bg-card animate__animated animate__rotateInDownLeft">
+                        <span> <i class="fas fa-clipboard mr-2"></i>Note Kunjungan </span>
+                    </div>
+                    <ul class="list-group list-group-flush border ">
+                        <li class="list-group-item font-list">Tanggal : <strong>{{ data.tanggalSetoran | date:'fullDate' }}</strong></li>
+                        <li class="list-group-item font-list">Pengecek : <strong>{{ data.asset }}</strong></li>
+                    </ul>
+                    <div class="card-body border mb-3">
+                        <button type="button" (click)="onClick(data)" class="btn btn-small btn btn-primary">
+                    Lokasi Kunjungan
+                     </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

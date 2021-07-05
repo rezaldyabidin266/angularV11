@@ -1,0 +1,254 @@
+<div class="body2">
+    <div class="container">
+
+        <div class="row mt-2">
+            <div class="col-lg-4 mb-3">
+                <button type="button" (click)="back()" class="btn btn-danger mb-3 Back animate__animated animate__fadeInDown">Back Halaman</button>
+                <div class="card" *ngFor="let data of FreezerData;">
+                    <div class="card-header bg-dark">
+                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Freezer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Detail Freezer</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Type Freezer</h4>
+                        <div class="tab-content mt-3">
+                            <div class="tab-pane active" id="description" role="tabpanel">
+                                <p class="card-text">Nama Freezer : <strong>{{ data.typeFrezer }}</strong></p>
+                            </div>
+                            <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                                <p class="card-text">NoSeri : <strong>{{ data.noSeri }}</strong></p>
+                                <p class="card-text">Kapasitas : <strong>{{ data.kapasitas }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="alert alert-warning text-center animate__animated animate__rotateInDownLeft">
+                    <strong>  LAPORAN FREEZER </strong>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mt-2">
+                            <img [src]="imageSrcAwal" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                            <div class="card-body">
+                                <div class=" d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <h5 class="mt-4"><strong>Image Awal :</strong></h5>
+                                    </div>
+                                    <button type="button" (click)="modalAwal(tempGambarData.id)" class="btn btn-success detail_upload mt-3" data-toggle="modal" data-target="#exampleModalCenterAwal">
+                                        <i class="fas fa-upload mr-1"></i> Upload
+                                       </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mt-2">
+                            <img [src]="imageSrcLokasi" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                            <div class="card-body">
+                                <div class=" d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <h5 class="mt-4"><strong>Image Lokasi :</strong></h5>
+                                    </div>
+                                    <button type="button" (click)="modalLokasi(tempGambarData.id)" class="btn btn-success detail_upload mt-3" data-toggle="modal" data-target="#exampleModalCenterLokasi">
+                                        <i class="fas fa-upload mr-1"></i> Upload
+                                       </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mt-3">
+                            <img [src]="imageSrcDisplay" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                            <div class="card-body">
+                                <div class="buy d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <h5 class="mt-4"><strong>Image Display :</strong></h5>
+                                    </div>
+                                    <button type="button" (click)="modalDisplay(tempGambarData.id)" class="btn btn-success detail_upload mt-3" data-toggle="modal" data-target="#exampleModalCenterDisplay">
+                                        <i class="fas fa-upload mr-1"></i>Upload
+                                       </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="card mt-3">
+                            <img [src]="imageSrcStock" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                            <div class="card-body">
+                                <div class=" d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <h5 class="mt-4"><strong>Image Stock :</strong></h5>
+                                    </div>
+                                    <button type="button" (click)="modalStock(tempGambarData.id)" class="btn btn-success detail_upload mt-3" data-toggle="modal" data-target="#exampleModalCenterStock">
+                                        <i class="fas fa-upload mr-1"></i>  Upload
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Awal -->
+<div class="modal fade" id="exampleModalCenterAwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Upload Gambar Awal</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="file" #fileInputAwal (change)="onFileAwal($event)" name="fileInputAwal" id="fileInputAwal" class="form-control-file">
+                            <br>
+                            <img [src]="previewAwal" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image" />
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!-- {{UploadCounter | json}} -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="postAwal()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Lokasi -->
+<div class="modal fade" id="exampleModalCenterLokasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Upload Gambar Lokasi</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <input type="file" #fileInputLokasi (change)="onFileLokasi($event)" name="fileInputLokasi" id="fileInputLokasi" class="form-control-file">
+                            <br>
+                            <img [src]="previewLokasi" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image" />
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!-- {{UploadCounter | json}} -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="postLokasi()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Display -->
+<div class="modal fade" id="exampleModalCenterDisplay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Upload Gambar Display</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <input type="file" #fileInputDisplay (change)="onFileDisplay($event)" name="fileInputDisplay" id="fileInputDisplay" class="form-control-file">
+                            <br>
+                            <img [src]="previewDisplay" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image" />
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!-- {{UploadCounter | json}} -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="postDisplay()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Stock -->
+<div class="modal fade" id="exampleModalCenterStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><strong>Upload Gambar Stock</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <input type="file" #fileInputStock (change)="onFileStock($event)" name="fileInputStock" id="fileInputStock" class="form-control-file">
+                            <br>
+                            <img [src]="previewStock" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image" />
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!-- {{UploadCounter | json}} -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="postStock()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="body2">
+    <div class="container">
+        <div class="row mt-4">
+            <!-- <div *ngFor="let data of productDataTable">
+            <p>{{data}}</p>
+            <p>{{data.nama}}</p>
+        </div> -->
+            <div class="col-lg-6">
+                <div class="card-body animate__animated animate__flipInY poin">
+                    <img [src]="imageSrc" id="{{imageId}}" (click)="randomImage($event)" class="img-thumbnail rounded mx-auto d-block imgg border-dark " alt="Responsive image">
+                    <p class="card-text"><small class="text-muted">Kamu bisa klik image</small></p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 custom-col">
+                <div class="card card-kalimat border-dark animate__animated animate__flipInY poin">
+                    <div class="card-body body-kalimat">
+                        <p class="card-text"><strong (click)="randomKata($event)" id="{{kalimatId}}">{{kalimatSrc}}</strong></p>
+                        <p class="card-text "><small class="text-muted">Kamu bisa klik kalimat</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

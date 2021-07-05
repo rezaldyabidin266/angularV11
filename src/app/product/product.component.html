@@ -1,0 +1,68 @@
+<div class="body2">
+    <div class="container">
+        <div class="row mt-4">
+            <!-- <div *ngFor="let data of productDataTable">
+            <p>{{data}}</p>
+            <p>{{data.nama}}</p>
+        </div> -->
+            <div class="col-lg-3 mb-3">
+                <div class="card border-info mb-3 animate__animated animate__backInDown">
+                    <div class="card-body ">
+                        <h5 class="card-title text-info"><strong>Info Menu</strong></h5>
+                        <p class="card-text text-info">Menu ini menampilkan Toko customer, jumlah stock dan waktu stock barang..., dan bisa juga akses lokasi toko</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="alert alert-info text-center animate__animated animate__rotateInDownLeft">
+                    <strong>  MONITORING TOKO </strong>
+                </div>
+                <form>
+                    <div class="form-group ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nama" placeholder="Type to search by Toko" [(ngModel)]="queryString" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><i class="fas fa-search text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered ml-1 ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Toko Customer</th>
+                            <th scope="col">Waktu Stock</th>
+                            <th scope="col">Jumlah Juice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of productDataTable | filterProduct: queryString | paginate: { itemsPerPage: 8, currentPage: p }">
+                            <td>
+                                <a href="http://maps.google.com/maps?q= + {{data.latitude}} + , + {{data.longitude}}"><i class="fas fa-map-marker-alt mr-3 ml-2 text-success"></i> </a> {{ data.nama }}</td>
+                            <td>{{ data.jarak }}</td>
+                            <td>{{ data.juice }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event" class="text-center text-white nati"></pagination-controls>
+
+                <div class="card-custom" *ngFor="let data of productDataTable | filterProduct : queryString | paginate: { itemsPerPage: 2, currentPage: c }">
+                    <div class="card border card-header mt-4 font-card bg-card animate__animated animate__rotateInDownLeft">
+                        <span> <i class="fas fa-store-alt mr-2 text-dark"></i><strong>{{ data.nama }}</strong> </span>
+                    </div>
+                    <ul class="list-group list-group-flush border ">
+                        <li class="list-group-item font-list">Waktu Stock : <strong>{{ data.jarak }}</strong></li>
+                        <li class="list-group-item font-list">Jumlah Juice : <strong>{{ data.juice }}</strong></li>
+                    </ul>
+                    <div class="card-body border mb-3 ">
+                        <a type="button" class="btn btn-outline-success btn-sm" href="http://maps.google.com/maps?q= + {{data.latitude}} + , + {{data.longitude}}">
+                            Akses Lokasi
+                        </a>
+                    </div>
+                </div>
+                <pagination-controls (pageChange)="c = $event" class="text-center text-white nati2"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

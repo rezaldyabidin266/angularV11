@@ -1,0 +1,140 @@
+<div class="body2">
+    <div class="container">
+        <div class="row mt-4">
+            <!-- <div *ngFor="let data of productDataTable">
+            <p>{{data}}</p>
+            <p>{{data.nama}}</p>
+        </div> -->
+            <div class="col-lg-3 mb-3">
+                <div class="card border-danger animate__animated animate__backInDown">
+                    <div class="card-body ">
+                        <h5 class="card-title text-danger"><strong>Info Menu</strong></h5>
+                        <p class="card-text text-danger">Menu ini berfungsi melaporkan Counter dengan cara upload image</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="alert alert-danger text-center animate__animated animate__rotateInDownLeft">
+                    <strong>  COUNTER TOKO </strong>
+                </div>
+                <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nama" placeholder="Type to search by Keterangan" [(ngModel)]="queryString" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><i class="fas fa-search text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered ml-1 text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">NoPelanggan</th>
+                            <th scope="col">NoCounter</th>
+                            <th scope="col">Keterangan</th>
+                            <th scope="col">Upload</th>
+                            <th scope="col">History</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of CounterData | filterCounter: queryString | paginate: { itemsPerPage: 7, currentPage: p }">
+                            <td> {{ data.noPelanggan }}</td>
+                            <td>{{ data.noCounter }}</td>
+                            <td>{{ data.keterangan }}</td>
+                            <td><button type="button" (click)="Upload(data.id)" class="btn btn-primary detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                       Upload
+                                      </button></td>
+                            <td><button (click)="onSelect(data)" type="button" class="btn btn-small btn-success id_detail" data-toggle="modal" data-target="#exampleModal">
+                                        History
+                                     </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event" class="text-center text-white nati"></pagination-controls>
+
+                <div class="card-custom" *ngFor="let data of CounterData | filterCounter: queryString | paginate: { itemsPerPage: 2, currentPage: c }">
+                    <div class="card border card-header mt-4 font-card bg-card animate__animated animate__rotateInDownLeft">
+                        <span> <i class="fas fa-clipboard mr-2"></i><strong>{{ data.keterangan }}</strong> </span>
+                    </div>
+                    <ul class="list-group list-group-flush border ">
+                        <li class="list-group-item font-list">NoPelanggan : <strong>{{ data.noPelanggan }}</strong></li>
+                        <li class="list-group-item font-list">NoCounter : <strong>{{ data.noCounter }}</strong></li>
+                    </ul>
+                    <div class="card-body border mb-3">
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <button type="button" (click)="Upload(data.id)" id="" class="btn btn-primary detail_upload" data-toggle="modal" data-target="#exampleModalCenter">
+                                Upload
+                               </button>
+                            <div class="col-2">
+                            </div>
+                            <button (click)="onSelect(data)" type="button" class="btn btn-small btn-success " data-toggle="modal" data-target="#exampleModal">
+                                History
+                             </button>
+                            <div class="col-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pagination-controls (pageChange)="c = $event" class="text-center text-white nati2"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Form Upload</h5>
+                <button type="button" (click)="Clear()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Keterangan</label>
+                            <input type="text" name="keterangan" [(ngModel)]="UploadCounter.keterangan" id="keterangan" class="form-control" placeholder="Keterangan" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Number Counter</label>
+                            <input type="number" name="counter" [(ngModel)]="UploadCounter.counter" id="counter" class="form-control" placeholder="Number Counter" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleFormControlFile1">Upload Gambar</label>
+                            <input type="file" #fileinput (change)="onFile($event)" name="fileInput" id="fileInput" class="form-control-file">
+                            <br>
+                            <img [src]="preview" class="img-thumbnail rounded mx-auto d-block" alt="Responsive image" />
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-2">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!-- {{UploadCounter | json}} -->
+                <button type="button" (click)="Clear()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="Post()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
